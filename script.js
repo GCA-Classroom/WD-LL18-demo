@@ -11,7 +11,7 @@ async function generateImage() {
   const movie2 = movie2Input.value;
 
   // Create a prompt for the image generation
-  const prompt = `A movie poster mashup of "${movie1}" and "${movie2}"`;
+  const prompt = `A fun movie poster mashup of "${movie1}" and "${movie2}"`;
 
   const apiUrl  = 'https://api.openai.com/v1/images/generations';
   const requestBody = {
@@ -40,8 +40,7 @@ async function generateImage() {
     const base64Image = data[0].b64_json;
 
     // Display the image in the #img-container
-    imgContainer.innerHTML =
-      `<img src="data:image/png;base64,${base64Image}" alt="${prompt}">`;
+    imgContainer.innerHTML = `<img src="data:image/png;base64,${base64Image}" alt="${prompt}">`;
   } catch (error) {
     console.error('Image generation failed:', error);
   }

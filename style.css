@@ -2,8 +2,8 @@
 
 body {
   font-family: 'Roboto', Arial, sans-serif;
-  background: linear-gradient(135deg, #e0e7ff 0%, #f7fafc 100%);
-  color: #222;
+  background: linear-gradient(135deg, #232526 0%, #485563 100%);
+  color: #fff;
   margin: 0;
   padding: 0;
   min-height: 100vh;
@@ -13,7 +13,7 @@ h1 {
   font-family: 'Merriweather', Arial, sans-serif;
   text-align: center;
   margin-top: 32px;
-  color: #2d6cdf;
+  color: #fff; /* White for strong contrast on dark bg */
   letter-spacing: 2px;
   font-size: 2.5rem;
   display: flex;
@@ -35,36 +35,39 @@ h1::before {
   align-items: center;
   gap: 14px;
   margin: 32px 0 0 0;
+  flex-wrap: wrap;
 }
 
 .input-group input[type="text"] {
   padding: 12px;
   font-size: 1.1rem;
-  border: 1.5px solid #b6c6e3;
+  border: 2px solid #fff; /* High contrast white border */
   border-radius: 8px;
   width: 220px;
-  background: #f4f8ff;
+  max-width: 100%;
+  background: #fff;      /* Light background for inputs */
+  color: #232526;        /* Dark text for readability */
   font-family: 'Roboto', Arial, sans-serif;
-  transition: border 0.2s;
+  transition: border 0.2s, background 0.2s;
 }
 
 .input-group input[type="text"]:focus {
-  border: 1.5px solid #2d6cdf;
+  border: 2px solid #3a86ff; /* Blue for focus */
+  background: #f0f4fa;       /* Very light blue on focus */
   outline: none;
 }
 
 .input-group button {
   padding: 12px 22px;
   font-size: 1.1rem;
-  /* Use a soft solid color instead of a strong gradient */
-  background: #4f8cff;
+  background: #3a86ff; /* Soft blue */
   color: #fff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 600;
-  box-shadow: 0 2px 8px rgba(44, 108, 223, 0.08);
+  box-shadow: 0 2px 8px rgba(58, 134, 255, 0.10);
   transition: background 0.2s, transform 0.1s;
   display: flex;
   align-items: center;
@@ -72,7 +75,8 @@ h1::before {
 }
 
 .input-group button:hover {
-  background: #2d6cdf;
+  background: #4361ee; /* Slightly deeper blue on hover */
+  color: #fff;
   transform: translateY(-2px) scale(1.04);
 }
 
@@ -85,18 +89,20 @@ h1::before {
 
 #img-container {
   display: flex;
+  color: #222;
   justify-content: center;
   align-items: flex-start;
-  margin-top: 36px;
+  margin-top: 42px;
   min-height: 320px;
   padding-bottom: 32px;
+  width: 100%;
 }
 
 #img-container img {
-  border-radius: 20px;
-  box-shadow: 0 6px 32px rgba(44, 62, 80, 0.18);
-  border: 2.5px solid #e3e3e3;
-  max-width: 320px;
+  border-radius: 15px;
+  box-shadow: 0 6px 32px rgba(58, 134, 255, 0.10);
+  border: 2.5px solid #e0e7ef;
+  max-width: 90vw;
   width: 100%;
   height: auto;
   object-fit: contain;
@@ -107,8 +113,31 @@ h1::before {
 }
 
 #img-container img:hover {
-  box-shadow: 0 8px 40px rgba(44, 108, 223, 0.18);
+  box-shadow: 0 8px 40px rgba(58, 134, 255, 0.18);
 }
-#img-container img:hover {
-  box-shadow: 0 8px 40px rgba(44, 108, 223, 0.18);
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.5rem;
+    gap: 6px;
+  }
+  .input-group {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .input-group input[type="text"] {
+    width: 90vw;
+    font-size: 1rem;
+  }
+  #img-container {
+    margin-top: 24px;
+    min-height: 180px;
+    padding-bottom: 16px;
+  }
+  #img-container img {
+    max-width: 98vw;
+    border-radius: 10px;
+  }
 }
