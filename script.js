@@ -1,35 +1,40 @@
+// Get references to elements
 const imgContainer = document.getElementById('img-container');
+const generateBtn = document.getElementById('generateBtn');
+const movie1Input = document.getElementById('movie1');
+const movie2Input = document.getElementById('movie2');
 
+// This function generates a movie poster mashup using the two movie titles
 async function generateImage() {
-  // The prompt for the image
-  const prompt  = 'A cute baby snake';
-  // The API endpoint URL
-  const apiUrl  = 'https://api.openai.com/v1/images/generations';
+  // Get the movie titles from the input fields
+  const movie1 = movie1Input.value;
+  const movie2 = movie2Input.value;
 
-  // Create the request body for the API
+  // Create a prompt for the image generation
+  const prompt = `A movie poster mashup of "${movie1}" and "${movie2}"`;
+
+  const apiUrl  = 'https://api.openai.com/v1/images/generations';
   const requestBody = {
     model: 'gpt-image-1',
-    quality: 'medium', 
+    quality: 'medium',
     prompt,
     n: 1,
-    size: '1024x1024' // gpt-image-1 always returns base64
+    size: '1024x1024'
   };
 
   // Show a loading message
   imgContainer.textContent = 'Loading image...';
 
   try {
-    // Send the request to OpenAI API
     const response = await fetch(apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENAI_API_KEY}` // Use the key from secrets.js
+        'Authorization': `Bearer ${OPENAI_API_KEY}`
       },
       body: JSON.stringify(requestBody)
     });
 
-    // Parse the response as JSON
     const jsonResponse = await response.json();
     const data = jsonResponse.data;
     const base64Image = data[0].b64_json;
@@ -38,10 +43,9 @@ async function generateImage() {
     imgContainer.innerHTML =
       `<img src="data:image/png;base64,${base64Image}" alt="${prompt}">`;
   } catch (error) {
-    // Log any errors to the console
     console.error('Image generation failed:', error);
   }
 }
 
-// Generate and display the image
-generateImage();
+// Run generateImage when the button is clicked
+generateBtn.addEventListener('click', generateImage);
